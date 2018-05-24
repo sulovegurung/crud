@@ -10,12 +10,16 @@ export class ItemService {
 
   itemsCollection: AngularFirestoreCollection<Item>;
   items: Observable<Item[]>;
+  itemDoc: AngularFirestoreDocument<Item>;
 
   constructor(private afs: AngularFirestore) {
     console.log('Hello ItemService Provider');
-    // this.itemsCollection = afs.collection<Item>('items');
-    // this.items = this.itemsCollection.valueChanges();
-    this.items = this.afs.collection('items').snapshotChanges().map(changes => {
+    // sort by title in ascending ordeer
+    this.itemsCollection = this.afs.collection<Item>('items', ref => ref.orderBy('title','asc'));
+    // this.items = this.itemsCollection.valueChanges(); // gets data only
+
+    // for both id and data used snapshot Changes
+    this.items = this.itemsCollection.snapshotChanges().map(changes => {
       return changes.map(a=> {
         const data = a.payload.doc.data() as Item;
         data.id = a.payload.doc.id;
@@ -30,6 +34,15 @@ export class ItemService {
 
   getItems() {
     return this.items;
+  }
+
+  addItem(item: Item) {
+    this.itemsCollection.add(item);
+  }
+
+  deleteItem(item: Item) {
+    this.itemDoc = this.afs.doc(`items/${item.id}`);
+    this.itemDoc.delete();
   }
 
 }

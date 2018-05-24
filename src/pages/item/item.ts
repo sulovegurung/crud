@@ -12,6 +12,8 @@ import { Item } from '../../models/item.interface';
 export class ItemPage implements OnInit{
 
   items: Item[];
+  itemToEdit: Item;
+  editState: boolean = false;
 
   constructor(private navCtrl: NavController, private navParams: NavParams, private itemService: ItemService) {
  
@@ -27,12 +29,30 @@ ngOnInit() {
       this.items = items;
     });
   }
-
-  // ionViewDidEnter(){
+   // ionViewWillLoad(){
   //   console.log('ionViewDidLoad ItemPage');
   //   this.itemService.getItems().subscribe(items => {
   //     this.items = items;
   //   });
   // }
+
+  deleteItem(event, item) {
+    this.clearState();
+    this.itemService.deleteItem(item);
+  }
+
+  editItem(event, item) {
+    this.editState = true;
+    this.itemToEdit = item;
+  }
+
+  updateItem(item) {
+
+  }
+  clearState() {
+    this.editState = false;
+    this.itemToEdit = null;
+  }
+
 
 }
