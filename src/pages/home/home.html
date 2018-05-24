@@ -1,14 +1,22 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+  <ion-navbar color="twitter">
+    <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
+<ion-content>
+  <ul>
+    <h2>Dynamic Query from Firestore:</h2>
+      
+    <li *ngFor="let lesson of lesson$ | async">
+      {{ lesson.title }} {{lesson.endDate | date }}
+    </li>
+  </ul>
+<ion-card>
+  <button ion-button color="primary" (click)="previousLesson()">Previous</button>
+  <button ion-button color="secondary" (click)="nextLesson()">Next</button>
+</ion-card>
+<ion-fab right bottom>
+        <button ion-fab color="twitter" mini navPush="ItemPage"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
 </ion-content>

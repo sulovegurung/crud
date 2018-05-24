@@ -1,0 +1,23 @@
+<ion-header>
+    <app-navbar title="FS Item manager"></app-navbar>
+  </ion-header>
+
+
+<ion-content padding>
+  <!-- Length: {{ items?.length}} -->
+  <div *ngIf="items?.length > 0; else noItems">
+    <!-- <div> -->
+  <ul class="collection" *ngFor="let item of items" >
+    <li class="colletion-item">
+     <strong>{{ item.id }} {{ item.title }}: </strong> 
+      {{ item.description }}
+    </li>
+  </ul>
+</div>
+
+<ng-template #noItems>
+  <hr>
+  <h5>There are no items to list</h5>
+</ng-template>
+
+</ion-content>

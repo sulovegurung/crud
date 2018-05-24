@@ -35,10 +35,20 @@ $app-direction: ltr;
 
 $colors: (
   primary:    #488aff,
+  primer:     #bc7e40,
+  primarysec: #2a2c43,
   secondary:  #32db64,
+  secondar:   #7ad61d,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  wall:       #677077,
+  lightwall:  #B5B5B7,
+  energy:     #f2b632,
+  twitter: (
+    base: #55acee,
+    contrast: #ffffff
+  )
 );
 
 
