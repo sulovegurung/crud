@@ -1,28 +1,35 @@
-<ion-card>
-  <ion-card-header color="primer">Add Item</ion-card-header>
-  <ion-grid class="page-margin">
-    <ion-row>
-      <ion-col offset-lg-4 col-lg-4 offset-md-3 col-md-6 offset-sm-3 col-sm-6>
+<div>
+  <h4>Add Item</h4>
+</div>
 
-        <form #loginForm="ngForm" novalidate>
+  <!-- <hr> -->
+<ion-card>
+  <!-- <ion-card-header color="primer">Add Item</ion-card-header> -->
+      <!-- <ion-col offset-lg-4 col-lg-4 offset-md-3 col-md-6 offset-sm-3 col-sm-6> -->
+
+        <form #itemForm="ngForm" novalidate>
           <ion-card-content>
+            <ion-grid>
+            <ion-row justify-space-around>
+              <ion-col col-12 col-sm-4 col-md-4>
             <ion-item>
-              <ion-label color="primary">Title :</ion-label>
-              <ion-input [(ngModel)]="item.title" type="text" placeholder="Item Name" name="title"></ion-input>
+              <ion-label color="primary">Item :</ion-label>
+              <ion-input [(ngModel)]="item.title" type="text" placeholder="Add Title" name="title"></ion-input>
             </ion-item>
+          </ion-col>
+          <ion-col col-12 col-sm-8  col-md-7 offset-md-1>
             <ion-item>
               <ion-label color="primary">Description :</ion-label>
-              <ion-input [(ngModel)]="item.description" type="text" placeholder="Add Description" name="description"></ion-input>
+              <ion-input [(ngModel)]="item.description" type="text" placeholder="Add Decsription" name="description"></ion-input>
             </ion-item>
-          </ion-card-content>
-
-          <ion-row class="add-items">
-            <div>
-              <button ion-button color="secondary" (click)="onSubmit()">Submit</button>
-            </div>
+          </ion-col>
           </ion-row>
+        </ion-grid>
+        <hr>
+          <div class="add-items">
+                  <button ion-button color="secondary" (click)="onSubmit()">Submit</button>
+          </div>
+        </ion-card-content>
         </form>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+      <!-- </ion-col> -->
 </ion-card>

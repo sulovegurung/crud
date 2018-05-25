@@ -7,65 +7,89 @@
 
 <ion-content padding>
   <ion-grid fixed>
-    <app-add-item></app-add-item>
-    <!-- Length: {{ items?.length}} -->
-    <div *ngIf="items?.length > 0; else noItems">
-      <ul class="column-layout" *ngFor="let item of items, let i=index">
-        <li (dblclick)="deleteItem($event, item)" class="colletion-item">
+    <ion-row>
+      <ion-col>
+        <app-add-item></app-add-item>
+       
+        <!-- Length: {{ items?.length}} -->
+        <div *ngIf="items?.length > 0; else noItems">
+          <ul class="column-layout" *ngFor="let item of items, let i=index">
+            <div (dblclick)="deleteItem($event, item)" class="colletion-item">
+                    
+              <ion-grid>
+                 
+                <ion-row>
+                  <ion-col col-1>
+                    <div class="mid-cols">
+                      {{ i+1 }}
+                    </div>
+                  </ion-col>
 
-          <div class="number-col">
-            <ion-item>{{ i+1 }}</ion-item>
-          </div>
+                  <ion-col col-4>
+                    <div class="mid-cols">
+                      <strong>{{ item.title | uppercase }}: </strong>
+                    </div>
+                  </ion-col>
 
-          <div class="first-col">
-            <strong>{{ item.title }}: </strong>
-          </div>
+                  <ion-col col-5>
+                    <div class="mid-cols">
+                      {{ item.description }}
+                    </div>
+                  </ion-col>
 
-          <div class="second-col">
-            {{ item.description }}
-          </div>
+                  <ion-col col-1>
+                    <ion-buttons>
+                      <!-- to update and delete items -->
+                      <button ion-button icon-only clear (click)="editItem($event, item)">
+                        <ion-icon name="create"></ion-icon>
+                      </button>
+                    </ion-buttons>
+                  </ion-col>
 
-          <div class="buttons-col">
-            <ion-buttons>
-              <button ion-button icon-only clear (click)="editItem($event, item)">
-                <ion-icon name="create"></ion-icon>
-              </button>
-              <button *ngIf="editState && itemToEdit.id == item.id" ion-button icon-only clear (click)="clearState()">
-                  <ion-icon name="arrow-dropup"></ion-icon>
-                </button>
-            </ion-buttons>
+                  <ion-col col-1>
+                    <ion-buttons>
+                      <!-- arrow drop button to clear the update and delete state -->
+                      <button *ngIf="editState && itemToEdit.id == item.id" ion-button icon-only clear (click)="clearState()">
+                        <ion-icon name="arrow-dropup"></ion-icon>
+                      </button>
+                    </ion-buttons>
+                  </ion-col>
 
-            <div *ngIf="editState && itemToEdit.id == item.id">
+                </ion-row>
+              </ion-grid>
 
+
+
+
+              <div *ngIf="editState && itemToEdit.id == item.id">
                 <form (ngSubmit)="updateItem(item)">
-                    <ion-card-content>
-                      <ion-item>
-                        <ion-input [(ngModel)]="item.title" type="text" placeholder="Item Name" name="title"></ion-input>
-                      </ion-item>
-                      <ion-item>
-                        <ion-input [(ngModel)]="item.description" type="text" placeholder="Add Description" name="description"></ion-input>
-                      </ion-item>
-                    </ion-card-content>
-          
-                    <ion-row class="add-items">
-                      <div>
-                        <button ion-button color="energy" type="submit" value="Update Item">Update</button>
-                        <button ion-button color="danger" (click)="deleteItem($event, item)">Delete</button>
-                      </div>
-                    </ion-row>
-                  </form>
+                  <ion-card-content>
+                    <ion-item>
+                      <ion-input [(ngModel)]="item.title" type="text" placeholder="Item Name" name="title"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                      <ion-input [(ngModel)]="item.description" type="text" placeholder="Add Description" name="description"></ion-input>
+                    </ion-item>
+                  </ion-card-content>
+
+                  <ion-row class="add-items">
+                    <div>
+                      <button ion-button color="energy" type="submit" value="Update Item">Update</button>
+                      <button ion-button color="danger" (click)="deleteItem($event, item)">Delete</button>
+                    </div>
+                  </ion-row>
+                </form>
+              </div>
 
             </div>
+          </ul>
+        </div>
 
-          </div>
-        </li>
-    </ul>
-    </div>
-
-    <ng-template #noItems>
-      <hr>
-      <h5>There are no items to list</h5>
-    </ng-template>
-
+        <ng-template #noItems>
+          <hr>
+          <h5>There are no items to list</h5>
+        </ng-template>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>

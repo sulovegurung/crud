@@ -1,0 +1,72 @@
+<ion-header>
+    <ion-grid fixed>
+      <app-navbar title="FS Item manager"></app-navbar>
+    </ion-grid>
+  </ion-header>
+  
+  
+  <ion-content padding>
+    <ion-grid fixed>
+      <app-add-item></app-add-item>
+      <!-- Length: {{ items?.length}} -->
+      <div *ngIf="items?.length > 0; else noItems">
+        <ul class="column-layout" *ngFor="let item of items, let i=index">
+          <li (dblclick)="deleteItem($event, item)" class="colletion-item">
+  
+            <div class="number-col">
+              <ion-item>{{ i+1 }}</ion-item>
+            </div>
+  
+            <div class="first-col">
+              <strong>{{ item.title }}: </strong>
+            </div>
+  
+            <div class="second-col">
+              {{ item.description }}
+            </div>
+  
+            <div class="buttons-col">
+              <ion-buttons>
+                <button ion-button icon-only clear (click)="editItem($event, item)">
+                  <ion-icon name="create"></ion-icon>
+                </button>
+                <button *ngIf="editState && itemToEdit.id == item.id" ion-button icon-only clear (click)="clearState()">
+                    <ion-icon name="arrow-dropup"></ion-icon>
+                  </button>
+              </ion-buttons>
+  
+              <div *ngIf="editState && itemToEdit.id == item.id">
+  
+                  <form (ngSubmit)="updateItem(item)">
+                      <ion-card-content>
+                        <ion-item>
+                          <ion-input [(ngModel)]="item.title" type="text" placeholder="Item Name" name="title"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                          <ion-input [(ngModel)]="item.description" type="text" placeholder="Add Description" name="description"></ion-input>
+                        </ion-item>
+                      </ion-card-content>
+            
+                      <ion-row class="add-items">
+                        <div>
+                          <button ion-button color="energy" type="submit" value="Update Item">Update</button>
+                          <button ion-button color="danger" (click)="deleteItem($event, item)">Delete</button>
+                        </div>
+                      </ion-row>
+                    </form>
+  
+              </div>
+  
+            </div>
+          </li>
+      </ul>
+      </div>
+  
+      <ng-template #noItems>
+        <hr>
+        <h5>There are no items to list</h5>
+      </ng-template>
+  
+    </ion-grid>
+  </ion-content>
+  

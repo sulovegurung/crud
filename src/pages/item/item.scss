@@ -1,87 +1,92 @@
 page-item {
 
+    .mid-cols {
+        padding-top: 15px;
+    }
+    button {
+        padding: 0px;
+    }
+
+    // @media (min-width: 1000px) {
  
+    //     .column-layout {
+    //         display: flex;
+    //     }
+    //     .buttons-col {
+    //         // margin-bottom: 0px;
+    //         // border-bottom: 1px solid rgb(200, 226, 85);
+    //         // shape-margin: 4rem;
+    //         padding-bottom: 1px;
+    //     }
+        
+    // }
 
-    @media (min-width: 1000px) {
+    // @media (max-width: 1000px) {
  
-        .column-layout {
-            display: flex;
-        }
-        .buttons-col {
-            // margin-bottom: 0px;
-            // border-bottom: 1px solid rgb(200, 226, 85);
-            // shape-margin: 4rem;
-            padding-bottom: 1px;
-        }
+    //     .buttons-col {
+    //         margin-bottom: 0px;
+    //         // border-bottom: rgb(136, 11, 11);
+    //         // shape-margin: 4rem;
+    //         border-bottom: 2px solid rgb(105, 14, 14);
+    //         // padding-bottom: 40px;
+    //     }
+    //     .number-col {
+    //         margin-top: 10px;
+    //     }
         
-    }
+    // }
 
-    @media (max-width: 1000px) {
- 
-        .buttons-col {
-            margin-bottom: 0px;
-            // border-bottom: rgb(136, 11, 11);
-            // shape-margin: 4rem;
-            border-bottom: 2px solid rgb(105, 14, 14);
-            // padding-bottom: 40px;
-        }
-        .number-col {
-            margin-top: 10px;
-        }
+    // .number-col {
+    //     padding: 3px;
+    //     flex: 1;
+    //     // margin-left: 30px;
+    //     // margin-right: 20px;
+    //     // box-sizing: border-box;
+    //     // flex-basis: 30%;
         
-    }
+    // }
+    // .first-col {
+    //     padding: 3px;
+    //     // padding-right: 10px;
+    //     // flex: 8;
+    //     // margin-right: 20px;
+    //     // order: 2;
+    //     // box-sizing: border-box;
+    //     // flex-basis: 30%;
+    // }
 
-    .number-col {
-        padding: 3px;
-        flex: 1;
-        // margin-left: 30px;
-        // margin-right: 20px;
-        // box-sizing: border-box;
-        // flex-basis: 30%;
-        
-    }
-    .first-col {
-        padding: 3px;
-        // padding-right: 10px;
-        // flex: 8;
-        // margin-right: 20px;
-        // order: 2;
-        // box-sizing: border-box;
-        // flex-basis: 30%;
-    }
+    // .second-col {
+    //     padding: 3px;
+    //     // padding-right: 10px;
+    //     flex: 1;
+    //     // color: rgb(177, 14, 14);
+    //     // margin-right: 20px;
+    //     // order: 1;
+    //     // box-sizing: border-box;
+    //     // flex-basis: 30%;
+    // }
 
-    .second-col {
-        padding: 3px;
-        // padding-right: 10px;
-        flex: 1;
-        // color: rgb(177, 14, 14);
-        // margin-right: 20px;
-        // order: 1;
-        // box-sizing: border-box;
-        // flex-basis: 30%;
-    }
-
-    .buttons-col {
-        padding: 3px;
-        // flex: 2;
-        // justify-content: flex-end;
-        // margin-left: 10px;
-        margin-right: 0px;
-        margin-bottom: 0px;
-        // order: 3;
-        // box-sizing: border-box;
-        // flex-basis: 30%;
-        // background-color: #6b6e69;
-        //  display: flex;
-    }
-    // .column-layout:nth-child(1) {background-color: #cdf1c3;}
-    .buttons-col button {
-        // margin-top:10px;
-        // flex: 1;
-        // margin-bottom: 30px;
-        // border-bottom: 1px solid rgb(200, 226, 85);
-        // padding-bottom: 30px;
-    }
+    // .buttons-col {
+    //     padding: 3px;
+    //     // flex: 2;
+    //     // justify-content: flex-end;
+    //     // margin-left: 10px;
+    //     margin-right: 0px;
+    //     margin-bottom: 0px;
+    //     // order: 3;
+    //     // box-sizing: border-box;
+    //     // flex-basis: 30%;
+    //     // background-color: #6b6e69;
+    //     //  display: flex;
+    // }
+    // // .column-layout:nth-child(1) {background-color: #cdf1c3;}
+    // .buttons-col button {
+    //     // margin-top:10px;
+    //     // flex: 1;
+    //     // margin-bottom: 30px;
+    //     // border-bottom: 1px solid rgb(200, 226, 85);
+    //     // padding-bottom: 30px;
+    // }
 
 
 }
