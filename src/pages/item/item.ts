@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ItemService } from '../../providers/item.service';
 import { Item } from '../../models/item.interface';
@@ -9,8 +9,8 @@ import { Item } from '../../models/item.interface';
   selector: 'page-item',
   templateUrl: 'item.html',
 })
-export class ItemPage implements OnInit{
-
+// export class ItemPage implements OnInit{
+export class ItemPage {
   items: Item[];
   itemToEdit: Item;
   editState: boolean = false;
@@ -24,16 +24,17 @@ export class ItemPage implements OnInit{
     // this.lesson$ = this.lessonRef.valueChanges();
 
 // ngOnInit() {
-//     console.log('ionViewDidLoad ItemPage');
 //     this.itemService.getItems().subscribe(items => {
 //       this.items = items;
 //     });
 //   }
    ionViewWillLoad(){
-    console.log('ionViewDidLoad ItemPage');
+    console.log('ionViewDidLoad ItemPage sulav again');
     this.itemService.getItems().subscribe(items => {
       this.items = items;
     });
+    console.log('ionViewDidLoad ItemPage sulav next');
+
   }
 
   deleteItem(event, item: Item) {

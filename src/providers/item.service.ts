@@ -8,6 +8,7 @@ import { Item } from '../models/item.interface';
 @Injectable()
 export class ItemService {
 
+
   itemsCollection: AngularFirestoreCollection<Item>;
   items: Observable<Item[]>;
   itemDoc: AngularFirestoreDocument<Item>;
@@ -19,6 +20,18 @@ export class ItemService {
     // this.items = this.itemsCollection.valueChanges(); // gets data only
 
     // for both id and data used snapshot Changes
+  /*   this.items = this.itemsCollection.snapshotChanges().map(changes => {
+      return changes.map(a=> {
+        const data = a.payload.doc.data() as Item;
+        data.id = a.payload.doc.id;
+        return data;
+      });
+    });
+    console.log('hey... I am hit.'); */
+  }
+
+
+  getItems() {
     this.items = this.itemsCollection.snapshotChanges().map(changes => {
       return changes.map(a=> {
         const data = a.payload.doc.data() as Item;
@@ -26,13 +39,7 @@ export class ItemService {
         return data;
       });
     });
-  }
-
-  // addItem(item: Item) {
-  //   this.itemsCollection.add(item);
-  // }
-
-  getItems() {
+    console.log('hey... I am again hit.');
     return this.items;
   }
 

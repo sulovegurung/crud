@@ -13,6 +13,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { MyApp } from './app.component';
 import { environment } from '../environments/environment';
 import { ItemService } from '../providers/item.service';
+import { AuthService } from '../providers/auth.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ItemService } from '../providers/item.service';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ItemService
+    ItemService,
+    AuthService
   ]
 })
 export class AppModule {}
