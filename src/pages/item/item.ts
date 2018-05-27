@@ -23,32 +23,34 @@ export class ItemPage implements OnInit{
    // this.lessonRef = this.afs.collection("Lesson");
     // this.lesson$ = this.lessonRef.valueChanges();
 
-ngOnInit() {
+// ngOnInit() {
+//     console.log('ionViewDidLoad ItemPage');
+//     this.itemService.getItems().subscribe(items => {
+//       this.items = items;
+//     });
+//   }
+   ionViewWillLoad(){
     console.log('ionViewDidLoad ItemPage');
     this.itemService.getItems().subscribe(items => {
       this.items = items;
     });
   }
-   // ionViewWillLoad(){
-  //   console.log('ionViewDidLoad ItemPage');
-  //   this.itemService.getItems().subscribe(items => {
-  //     this.items = items;
-  //   });
-  // }
 
-  deleteItem(event, item) {
+  deleteItem(event, item: Item) {
     this.clearState();
     this.itemService.deleteItem(item);
   }
 
-  editItem(event, item) {
+  editItem(event, item: Item) {
     this.editState = true;
     this.itemToEdit = item;
   }
 
-  updateItem(item) {
-
+  updateItem(item: Item) {
+    this.itemService.updateItem(item);
+    this.clearState();
   }
+
   clearState() {
     this.editState = false;
     this.itemToEdit = null;
