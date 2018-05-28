@@ -1,14 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthService } from '../../providers/auth.service';
-import { User } from '../../models/user.interface';
+// import { User } from '../../models/user.interface';
 
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -16,24 +10,30 @@ import { User } from '../../models/user.interface';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-private user: User[];
+
+// private user: User[];
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public authService: AuthService
     ) {
+      console.log('ionViewDidLoad LoginPage..1 step');
+    }
+
+  ionViewCanEnter() {
+    this.authService.getAuthenticateduser().subscribe(user=>{
+      if(user) {
+        this.navCtrl.setRoot('HomePage');
+      }
+    });
   }
-  // ionViewCanEnter() {
-  //   this.authService.getAuthenticateduser().subscribe(user=>{
-  //     if(user) {
-  //       this.navCtrl.setRoot('HomePage');
-  //     }
-  //   });
-  // }
 
   ongoogleLogin() {
     this.authService.googleLogin();
+    this.navCtrl.setRoot('HomePage');
   }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }

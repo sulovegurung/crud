@@ -1,14 +1,13 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
-import {
-  AngularFirestore,
-  AngularFirestoreCollection
-} from "angularfire2/firestore";
+import { IonicPage, NavController } from "ionic-angular";
+import { AngularFirestore } from "angularfire2/firestore";
 import { Observable } from "rxjs/Observable";
 import { BehaviorSubject } from "rxjs/Behaviorsubject";
 import { switchMap } from "rxjs/operators";
 import * as moment from "moment";
 import { Lesson } from "../../models/lesson.interface";
+import { AuthService } from "../../providers/auth.service";
+// import { User } from "../../models/user.interface";
 
 @IonicPage()
 @Component({
@@ -16,14 +15,16 @@ import { Lesson } from "../../models/lesson.interface";
   templateUrl: "home.html"
 })
 export class HomePage {
+
+  // private user: User[];
   // lessonRef: AngularFirestoreCollection<Lesson>;
   lesson$: Observable<Lesson[]>;
   endDate$: BehaviorSubject<Date>;
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams,
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    public authService: AuthService
   ) {
     // this.lessonRef = this.afs.collection("Lesson");
     // this.lesson$ = this.lessonRef.valueChanges();
@@ -35,6 +36,14 @@ export class HomePage {
           .valueChanges()
       )
     );
+  }
+
+  ionViewCanEnter() {
+    this.authService.getAuthenticateduser().subscribe(user=>{
+      if(!user) {
+        this.navCtrl.setRoot('LoginPage');
+      }
+    });
   }
 
   nextLesson() {
@@ -55,4 +64,10 @@ export class HomePage {
   ionViewDidLoad() {
     console.log("ionViewDidLoad HomePage");
   }
+
+  onLogout() {
+    this.authService.signOut();
+    // this.navCtrl.setRoot('LoginPage');
+  }
+
 }

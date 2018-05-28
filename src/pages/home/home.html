@@ -1,9 +1,18 @@
 <ion-header>
-  <ion-navbar color="twitter">
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+    <ion-grid fixed>
+        <app-navbar title="Home"></app-navbar>
+      </ion-grid>
 </ion-header>
+
 <ion-content>
+    <div *ngIf="authService.user$ | async as user">
+        <h3>Hello, {{ user.displayName }}</h3>
+        <img  [src]="user.photoURL">
+        <p>UID: {{ user.uid }}</p>
+        <p>Favorite Color: {{ user?.favoriteColor }} </p>
+        <button (click)="onLogout()">Logout</button>
+    </div>
+
   <ul>
     <h2>Dynamic Query from Firestore:</h2>
       

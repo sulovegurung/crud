@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { ItemService } from '../../providers/item.service';
+import { AuthService } from './../../providers/auth.service';
 import { Item } from '../../models/item.interface';
 
 
@@ -15,7 +16,9 @@ export class ItemPage {
   itemToEdit: Item;
   editState: boolean = false;
 
-  constructor(private navCtrl: NavController, private navParams: NavParams, private itemService: ItemService) {
+  constructor(private navCtrl: NavController,
+     private itemService: ItemService,
+     private authService: AuthService) {
  
  
   }
@@ -34,7 +37,14 @@ export class ItemPage {
       this.items = items;
     });
     console.log('ionViewDidLoad ItemPage sulav next');
+  }
 
+  ionViewCanEnter() {
+    this.authService.getAuthenticateduser().subscribe(user=>{
+      if(!user) {
+        this.navCtrl.setRoot('Loginpage');
+      }
+    });
   }
 
   deleteItem(event, item: Item) {

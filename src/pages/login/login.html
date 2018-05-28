@@ -6,12 +6,27 @@
 
 
 <ion-content padding>
-<div *ngIf="authService.user | async; then authenticated else guest">
-</div>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col col-4>
+        </ion-col>
+        <ion-col col-4>
+                <div *ngIf="authService.user$ | async; else guest">
+                <!-- <div *ngIf="authService.user | async; then authenticated else guest"> -->
+                </div>
+          
+        </ion-col>
+      <ion-col col-4>
+
+      </ion-col>
+
+
+
 
 <!-- User not logged in -->
 <ng-template #guest>
-  <h3>Howdy, GUEST</h3>
+ 
+  <h3>HELLO, GUEST</h3>
   <p>Login to get started...</p>
 
   <button ion-button small color="primer" (click)="ongoogleLogin()">Connect Google</button>
@@ -19,7 +34,7 @@
 </ng-template>
 
   <!-- User logged in -->
-  <ng-template #authenticated>
+<!--   <ng-template #authenticated>
       <div *ngIf="authService.user | async as user">
           <h3>Hello, {{ user.displayName }}</h3>
           <img  [src]="user.photoURL">
@@ -28,6 +43,8 @@
           <button (click)="authService.signOut()">Logout</button>
       </div>
 
-  </ng-template>
+  </ng-template> -->
+</ion-row>
+</ion-grid>
 
 </ion-content>

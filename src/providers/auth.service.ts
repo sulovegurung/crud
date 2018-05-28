@@ -1,4 +1,3 @@
-import { NavController } from 'ionic-angular';
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -19,14 +18,13 @@ import { User } from '../models/user.interface';
 @Injectable()
 export class AuthService {
 
-    user: Observable<User>;
+    user$: Observable<User>;
 
     constructor( 
-        private navCtrl: NavController,
         private afAuth: AngularFireAuth,
         private afs: AngularFirestore,
         ) {
-            this.user = this.afAuth.authState
+            this.user$ = this.afAuth.authState
             .switchMap(user => {
             if (user) {
                 return this.afs.doc<User>(`users/${user.uid}`).valueChanges()
@@ -35,7 +33,7 @@ export class AuthService {
             }
         })
     }
-
+//  Google Login and user data extract
     googleLogin() {
         const provider = new firebase.auth.GoogleAuthProvider()
         return this.oAuthLogin(provider);
@@ -57,18 +55,18 @@ export class AuthService {
             uid: user.uid,
             email: user.email,
             displayName: user.displayName,
-            photoURL: user.photoURL
+            photoURL: user.photoURL,
         }
         return userRef.set(data, { merge: true })
     }
-
+// Auth Guard
     getAuthenticateduser() {
         return this.afAuth.authState;
     }
 
+// sign Out
     signOut() {
         this.afAuth.auth.signOut().then(() => {
-        // this.navCtrl.setRoot('LoginPage');
         })
     }
 }
